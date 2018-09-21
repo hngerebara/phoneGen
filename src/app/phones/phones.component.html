@@ -1,0 +1,34 @@
+
+<div>
+  <div id="phonenumbers">
+    <app-input (click)="getRandomPhoneNumbers()"></app-input>
+
+      Sort By:<select ng-model="sortBy">
+      <option value="asc"> Ascending</option>
+      <option value="-asc">Descending</option>  
+    </select>
+    
+    <ul *ngIf="phoneNumbers.length">
+      <li *ngFor="let phoneNumber of phoneNumbers">
+        {{ phoneNumber }}
+      </li>  
+    </ul>
+      <div>
+          <button (click)="openInputComponent()">{{ buttonTitles.generate | uppercase}}</button>
+          <button (click)="saveFile()">{{ buttonTitles.saveFile | uppercase }}</button>
+          <button (click)="getStats()">{{ buttonTitles.viewStats | uppercase }}</button>
+        </div>
+  </div>
+
+  <div>
+    <div id="statistics" *ngIf="viewStats">
+      Min: {{min}}
+      Max: {{max}}
+      Total: {{total}} 
+    </div>
+  </div>
+</div>
+    
+  
+  
+  
