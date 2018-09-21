@@ -7,15 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhonesComponent implements OnInit {
 
-  constructor() {
-
-  }
+  constructor() {}
 
   phoneNumbers = [];
   min: number = 0;
   max: number = 0;
   total: number = 0;
-  limit: number = 10;
+  limit: number = 0;
+  error: boolean = false;
+  message = "The limit execeeds allowed length. Please try again"
 
   buttonTitles: any = {
     generate: "Generate",
@@ -24,18 +24,29 @@ export class PhonesComponent implements OnInit {
   }
 
   viewStats: boolean = false;
+  openInput: boolean = false;
 
   ngOnInit() {}
 
-  getRandomPhoneNumbers(){  
-    this.phoneNumbers = [];  
+  getRandomPhoneNumbers(limit){ 
+    if(limit > 10) return this.error = true; 
+    this.phoneNumbers = [];
+    this.message = '';  
     let phoneNumber: number = 0;
-    while(phoneNumber < 10){
-      this.phoneNumbers.push(Math.floor(Math.random() * 9000000000 + 1000000000));
+    while(phoneNumber < limit){
+      this.phoneNumbers.push('0' + Math.floor(Math.random() * 900000000 + 100000000));
       phoneNumber ++
     }
     return this.phoneNumbers; 
   }
+
+  getStats(){
+    this.viewStats = true;
+    this.min = Math.min(...this.phoneNumbers);
+    this.max = Math.max.apply(null, this.phoneNumbers);
+    this.total = this.phoneNumbers.length;    
+  }
+
 }
 
 

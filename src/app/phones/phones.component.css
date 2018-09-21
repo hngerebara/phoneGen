@@ -20,6 +20,10 @@
     padding: 10px;
     max-height: 50px; 
 }
+
+.text-danger {
+    color: red;
+}
   
 ul {
     margin: 0 auto;
