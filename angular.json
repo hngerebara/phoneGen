@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "phoneGen": {
+    "phonGen": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,12 +13,15 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/phoneGen",
+            "outputPath": "dist/phonGen",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": [],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
             "styles": [
               "src/styles.css"
             ],
@@ -26,7 +29,12 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -42,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "phoneGen:build"
+            "browserTarget": "phonGen:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "phoneGen:build:production"
+              "browserTarget": "phonGen:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "phoneGen:build"
+            "browserTarget": "phonGen:build"
           }
         },
         "test": {
@@ -67,7 +75,10 @@
               "styles.css"
             ],
             "scripts": [],
-            "assets": []
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ]
           }
         },
         "lint": {
@@ -84,7 +95,7 @@
         }
       }
     },
-    "phoneGen-e2e": {
+    "phonGen-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -92,7 +103,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "phoneGen:serve"
+            "devServerTarget": "phonGen:serve"
           }
         },
         "lint": {
@@ -107,5 +118,5 @@
       }
     }
   },
-  "defaultProject": "phoneGen"
+  "defaultProject": "phonGen"
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-phones',
@@ -15,7 +16,7 @@ export class PhonesComponent implements OnInit {
   total: number = 0;
   limit: number = 0;
   error: boolean = false;
-  message = "The limit execeeds allowed length. Please try again"
+  message = "The limit execeeds allowed length. Please try again";
 
   buttonTitles: any = {
     generate: "Generate",
@@ -27,6 +28,10 @@ export class PhonesComponent implements OnInit {
   openInput: boolean = false;
 
   ngOnInit() {}
+
+  saveFile(): void {
+    saveAs(new Blob(this.phoneNumbers, {type: "text/csv;charset=utf-8"}), 'data.csv');
+}
 
   getRandomPhoneNumbers(limit){ 
     if(limit > 10) return this.error = true; 
