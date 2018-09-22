@@ -13,9 +13,7 @@ export class InputComponent implements OnInit {
   }
   @Output() buttonClicked: EventEmitter<number> = new EventEmitter<number>();
 
-  limitValue: number;
-  clearSearch: ''
-  
+  limitValue: number;  
 
   limitEntered(){
     this.buttonClicked.emit(this.limitValue);

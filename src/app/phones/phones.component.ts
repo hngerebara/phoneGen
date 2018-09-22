@@ -31,10 +31,11 @@ export class PhonesComponent implements OnInit {
 
   saveFile(): void {
     saveAs(new Blob(this.phoneNumbers, {type: "text/csv;charset=utf-8"}), 'data.csv');
-}
+  }
 
   getRandomPhoneNumbers(limit){ 
-    if(limit > 10) return this.error = true; 
+    if(limit > 350000) return this.error = true; 
+
     this.phoneNumbers = [];
     this.message = '';  
     let phoneNumber: number = 0;
@@ -51,6 +52,8 @@ export class PhonesComponent implements OnInit {
     this.max = Math.max.apply(null, this.phoneNumbers);
     this.total = this.phoneNumbers.length;    
   }
+
+
 
 }
 
