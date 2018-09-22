@@ -23,5 +23,5 @@ before_script:
 - npm install
 - ng build
 
-script: ng test
+script: ng test --watch false
 
