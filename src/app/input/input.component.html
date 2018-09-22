@@ -1,0 +1,8 @@
+<div>
+  Enter only numbers
+    <input [(ngModel)]="limitValue" 
+          name="limitValue" 
+          (keypress)="numberOnly($event)"
+          placeholder="Total numbers needed"/>
+    <button (click)="limitEntered()">Enter</button>
+</div>

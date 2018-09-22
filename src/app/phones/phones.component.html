@@ -1,0 +1,25 @@
+
+<div>
+  <label *ngIf="error" class="text-danger">{{message}}</label>
+  <div id="phonenumbers">
+    <app-input *ngIf="openInput" (buttonClicked)="getRandomPhoneNumbers($event)"></app-input>
+
+    <ul *ngIf="phoneNumbers.length">
+      <li *ngFor="let phoneNumber of phoneNumbers">
+        {{ phoneNumber }}
+      </li>  
+    </ul>
+      <div>
+          <button (click)="openInput = true">{{ buttonTitles.generate | uppercase}}</button>
+          <button (click)="saveFile()">{{ buttonTitles.saveFile | uppercase }}</button>
+          <button (click)="getStats()">{{ buttonTitles.viewStats | uppercase }}</button>
+        </div>
+  </div>
+  <div>
+    <div id="statistics" *ngIf="viewStats">
+      Min: {{min}}
+      Max: {{max}}
+      Total: {{total}} 
+    </div>
+  </div>
+</div>
