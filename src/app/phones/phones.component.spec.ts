@@ -64,4 +64,28 @@ describe('PhonesComponent', () => {
     expect(component.error).toEqual(true);
   });
 
+  it('should get statistics', () => {
+    let limit = 4;
+    expect(component.getRandomPhoneNumbers(limit)).toBeDefined();
+    fixture.debugElement.query(By.css('#getStats')).triggerEventHandler('click', null);
+    expect(component.getStats).toBeTruthy();
+    expect(component.viewStats).toEqual(true);
+
+    let min = Math.min(...component.phoneNumbers);
+    let max = Math.max(...component.phoneNumbers);
+    expect(min).toEqual(component.min);
+    expect(max).toEqual(component.max);
+    expect(component.total).toEqual(component.phoneNumbers.length);
+  });
+
+  it('should sort phone numbers', () => {
+    let limit = 4;
+    expect(component.getRandomPhoneNumbers(limit)).toBeDefined();
+    expect(component.sortNumbers('Ascending')).toHaveBeenCalled;
+    let asc = component.phoneNumbers.sort((a,b) => 0 - (a > b ? -1 : 1));
+    expect(component.sortNumbers('Descending')).toHaveBeenCalled;
+    let dsc = component.phoneNumbers.sort((a,b) => 0 - (a > b ? 1 : -1));
+    expect(dsc).toEqual(component.phoneNumbers);
+  })
+
 });
