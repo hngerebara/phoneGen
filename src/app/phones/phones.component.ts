@@ -24,6 +24,12 @@ export class PhonesComponent implements OnInit {
     viewStats: "View Statistics"
   }
 
+  sortBy = [
+    { id: 1, name: "" },
+    { id: 2, name: "Ascending" },
+    { id: 3, name: "Descending" }
+  ];
+
   viewStats: boolean = false;
   openInput: boolean = false;
 
@@ -49,11 +55,17 @@ export class PhonesComponent implements OnInit {
   getStats(){
     this.viewStats = true;
     this.min = Math.min(...this.phoneNumbers);
-    this.max = Math.max.apply(null, this.phoneNumbers);
+    this.max = Math.max(...this.phoneNumbers);
     this.total = this.phoneNumbers.length;    
   }
 
-
+  sortNumbers(valueSelected) {
+    if(valueSelected == 'Ascending'){  
+      this.phoneNumbers = this.phoneNumbers.sort((a,b) => 0 - (a > b ? -1 : 1));
+    } else {
+      this.phoneNumbers = this.phoneNumbers.sort((a,b) => 0 - (a > b ? 1 : -1));
+    }
+  }
 
 }
 
