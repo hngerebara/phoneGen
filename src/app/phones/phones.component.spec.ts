@@ -86,6 +86,13 @@ describe('PhonesComponent', () => {
     expect(component.sortNumbers('Descending')).toHaveBeenCalled;
     let dsc = component.phoneNumbers.sort((a,b) => 0 - (a > b ? 1 : -1));
     expect(dsc).toEqual(component.phoneNumbers);
-  })
+  });
+
+  it('should export file', () => {
+    let limit = 4;
+    expect(component.getRandomPhoneNumbers(limit)).toBeDefined();
+    fixture.debugElement.query(By.css('#saveFile')).triggerEventHandler('click', null);
+    expect(component.saveFile).toBeTruthy();
+  });
 
 });
