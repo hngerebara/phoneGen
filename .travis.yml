@@ -24,4 +24,6 @@ before_script:
 - ng build
 
 script: ng test --watch false
+after_script:
+  - cat ./coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
